@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Maria Bibi — Automation Engineer</title>
+<meta name="description" content="Maria Bibi — Automation Engineer specialising in Python, UiPath, Robot Framework and Selenium. Building scalable RPA and process automation for fintech, telecom and enterprise clients." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1d3461;
+    --gold: #c9a84c;
+    --gold-light: #e8c87a;
+    --white: #f0f4f8;
+    --white-dim: #a8b8cc;
+    --accent: #4fc3f7;
+    --card-bg: #0f1f38;
+    --border: rgba(201,168,76,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--white-dim);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-toggle {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 40px; height: 36px; padding: 0 8px;
+    background: transparent; border: 1px solid var(--border);
+    border-radius: 3px; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px;
+    background: var(--gold); transition: transform 0.25s, opacity 0.25s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .nav-toggle:focus-visible,
+  .nav-links a:focus-visible,
+  a:focus-visible,
+  button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(29,52,97,0.55) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(var(--white) 1px, transparent 1px),
+      linear-gradient(90deg, var(--white) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 680px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem; color: var(--gold);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero-tag::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  h1 span { color: var(--gold); }
+  .hero-title {
+    font-size: 1.1rem; font-weight: 400;
+    color: var(--white-dim); margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-summary {
+    font-size: 1rem; color: var(--white-dim);
+    max-width: 560px; margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem;
+  }
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 500;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 3px; color: var(--gold-light);
+    background: rgba(201,168,76,0.06);
+    letter-spacing: 0.06em;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 0.8rem 2rem;
+    background: var(--gold); color: var(--navy);
+    font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; border-radius: 3px; cursor: pointer;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    padding: 0.8rem 2rem;
+    background: transparent; color: var(--white);
+    font-weight: 600; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid rgba(240,244,248,0.3);
+    border-radius: 3px; cursor: pointer;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--card-bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 0;
+  }
+  .stat {
+    flex: 1; min-width: 160px;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--white-dim);
+    margin-top: 0.4rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5%; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--gold);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+  .section-tag::after {
+    content: ''; flex: 1; max-width: 50px;
+    height: 1px; background: var(--gold);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700; color: var(--white);
+  }
+
+  /* ── SKILLS ── */
+  .skills-section { background: var(--navy-mid); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.6rem 1.8rem;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .skill-card-title {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .skill-card-title .icon { font-size: 1.1rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-size: 0.78rem; font-family: 'DM Mono', monospace;
+    padding: 0.25rem 0.7rem;
+    background: rgba(240,244,248,0.06);
+    border: 1px solid rgba(240,244,248,0.12);
+    border-radius: 3px; color: var(--white-dim);
+  }
+
+  /* ── EXPERIENCE ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2.4rem; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%; background: var(--gold);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.25);
+  }
+  .exp-header { margin-bottom: 0.8rem; }
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700; color: var(--white);
+  }
+  .exp-company {
+    font-size: 0.9rem; font-weight: 600; color: var(--gold);
+    margin-top: 0.1rem;
+  }
+  .exp-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--white-dim);
+    margin-top: 0.3rem; letter-spacing: 0.06em;
+  }
+  .exp-list {
+    list-style: none; margin-top: 1rem;
+  }
+  .exp-list li {
+    position: relative; padding-left: 1.3rem;
+    font-size: 0.9rem; color: var(--white-dim);
+    margin-bottom: 0.6rem; line-height: 1.65;
+  }
+  .exp-list li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--gold); font-size: 0.7rem; top: 0.22rem;
+  }
+  .highlight {
+    color: var(--white); font-weight: 600;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-section { background: var(--navy-mid); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    transition: border-color 0.25s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .project-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 1rem;
+  }
+  .project-icon { font-size: 1.8rem; }
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    justify-content: flex-end;
+  }
+  .project-stack span {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px; color: var(--gold-light);
+  }
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .project-client {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; color: var(--gold);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .project-desc {
+    font-size: 0.87rem; color: var(--white-dim);
+    line-height: 1.7; flex: 1;
+  }
+  .project-impact {
+    margin-top: 1.2rem; padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .achievement-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.5rem 1.8rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .achievement-card:hover { border-color: var(--gold); }
+  .ach-icon {
+    font-size: 1.6rem; flex-shrink: 0; margin-top: 0.1rem;
+  }
+  .ach-text { font-size: 0.88rem; color: var(--white-dim); line-height: 1.65; }
+  .ach-text strong { color: var(--white); }
+
+  /* ── EDUCATION & CERTS ── */
+  .edu-cert-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  @media(max-width: 700px) { .edu-cert-grid { grid-template-columns: 1fr; } }
+  .edu-block {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 2rem;
+  }
+  .edu-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--white); margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem; border-bottom: 1px solid var(--border);
+  }
+  .edu-item { margin-bottom: 1.2rem; }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-degree { font-weight: 600; font-size: 0.93rem; color: var(--white); }
+  .edu-school { font-size: 0.83rem; color: var(--white-dim); margin-top: 0.2rem; }
+  .edu-year {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--gold); margin-top: 0.2rem; letter-spacing: 0.06em;
+  }
+  .cert-list { list-style: none; }
+  .cert-list li {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    font-size: 0.87rem; color: var(--white-dim);
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .cert-list li:last-child { border-bottom: none; }
+  .cert-list li::before { content: '✦'; color: var(--gold); font-size: 0.65rem; margin-top: 0.25rem; flex-shrink: 0; }
+  .cert-issuer { color: var(--gold); font-size: 0.78rem; font-family: 'DM Mono', monospace; display: block; margin-top: 0.15rem; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--navy-mid);
+    text-align: center;
+  }
+  .contact-section .section-header { text-align: center; }
+  .contact-section .section-tag { justify-content: center; }
+  .contact-section .section-tag::after { display: none; }
+  .contact-section .section-tag::before {
+    content: ''; width: 50px; height: 1px; background: var(--gold);
+  }
+  .contact-links {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 1.2rem; margin-top: 2.5rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.9rem 1.8rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px; color: var(--white-dim);
+    text-decoration: none; font-size: 0.88rem;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .contact-link .ci { font-size: 1.1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e;
+    padding: 2rem 5%; text-align: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem; color: var(--white-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-tag        { animation-delay: 0.1s; }
+  h1               { animation-delay: 0.2s; }
+  .hero-title      { animation-delay: 0.3s; }
+  .hero-summary    { animation-delay: 0.4s; }
+  .hero-badges     { animation-delay: 0.5s; }
+  .hero-cta        { animation-delay: 0.6s; }
+
+  @media(prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-content > * { animation: none; }
+  }
+
+  @media(max-width: 768px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: rgba(10,22,40,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .nav-links.open { max-height: 400px; }
+    .nav-links li { border-top: 1px solid rgba(201,168,76,0.12); }
+    .nav-links a { display: block; padding: 1rem 5%; }
+    .stats-strip { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M. Bibi</div>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Automation Engineer · 3 Years</div>
+    <h1>Maria <span>Bibi</span></h1>
+    <div class="hero-title">Automation Engineer @ Mercurial Minds</div>
+    <p class="hero-summary">
+      Automation engineer building end-to-end RPA and process automation for fintech, telecom and enterprise clients. I turn high-volume manual workflows into reliable Python and UiPath solutions that cut handling time, strengthen data accuracy and scale with the business.
+    </p>
+    <div class="hero-badges">
+      <span class="badge">HackerRank SQL (Advanced)</span>
+      <span class="badge">UiPath RPA</span>
+      <span class="badge">Python Automation</span>
+      <span class="badge">Robot Framework</span>
+      <span class="badge">Power BI</span>
+      <span class="badge">Fintech &amp; Telecom</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn-outline">View Experience</a>
+      <a href="assets/maria-bibi-cv.pdf" class="btn-outline" download="Maria-Bibi-CV.pdf">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <span class="stat-number">3</span>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat">
+    <span class="stat-number">7</span>
+    <div class="stat-label">Client Automation Projects</div>
+  </div>
+  <div class="stat">
+    <span class="stat-number">30+</span>
+    <div class="stat-label">GL Codes Automated</div>
+  </div>
+  <div class="stat">
+    <span class="stat-number">3</span>
+    <div class="stat-label">Fintech Clients Served</div>
+  </div>
+  <div class="stat">
+    <span class="stat-number">10+</span>
+    <div class="stat-label">Automation Tools</div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-header">
+    <div class="section-tag">Technical Arsenal</div>
+    <h2>Skills &amp; Tools</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">🐍</span> Programming &amp; Scripting</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">🤖</span> RPA Platforms</div>
+      <div class="skill-tags">
+        <span class="skill-tag">UiPath</span>
+        <span class="skill-tag">RPA Development</span>
+        <span class="skill-tag">Bot Monitoring</span>
+        <span class="skill-tag">Workflow Design</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">🧪</span> Test &amp; Web Automation</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Robot Framework</span>
+        <span class="skill-tag">Selenium</span>
+        <span class="skill-tag">Playwright</span>
+        <span class="skill-tag">Web Scraping</span>
+        <span class="skill-tag">Web Automation</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">🗄️</span> Databases</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Oracle Database</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">SQL Queries</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">📊</span> Data &amp; Analytics</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">Excel Automation</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">📄</span> Document &amp; Email Automation</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Email Automation</span>
+        <span class="skill-tag">OCR Extraction</span>
+        <span class="skill-tag">PDF Processing</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">🔗</span> Integration &amp; Workflow</div>
+      <div class="skill-tags">
+        <span class="skill-tag">API Integration</span>
+        <span class="skill-tag">Workflow Optimization</span>
+        <span class="skill-tag">Process Analysis</span>
+        <span class="skill-tag">Test Automation</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title"><span class="icon">🏦</span> Industry Domains</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Fintech</span>
+        <span class="skill-tag">Banking Operations</span>
+        <span class="skill-tag">Telecom</span>
+        <span class="skill-tag">Compliance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <div class="section-tag">Career Journey</div>
+    <h2>Work Experience</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="exp-header">
+        <div class="exp-role">Automation Engineer</div>
+        <div class="exp-company">Mercurial Minds</div>
+        <div class="exp-meta">Oct 2024 – Present &nbsp;·&nbsp; Fintech &amp; Enterprise Automation</div>
+      </div>
+      <ul class="exp-list">
+        <li>Design and deliver automation solutions for external clients, including fintech organisations and large-scale enterprises, from requirements analysis through to deployment.</li>
+        <li>Automate <span class="highlight">end-to-end banking operations</span> — identity management, GL reconciliation, AML alert verification and biometric verification requests — reducing manual intervention at every step.</li>
+        <li>Build and maintain automated workflows that streamline business operations, <span class="highlight">improve process efficiency</span> and scale to growing client volumes.</li>
+        <li>Ensure the reliability and performance of deployed bots through <span class="highlight">continuous monitoring, optimisation and client support</span>.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="exp-header">
+        <div class="exp-role">Associate Automation Engineer</div>
+        <div class="exp-company">Huawei</div>
+        <div class="exp-meta">Aug 2023 – May 2024 &nbsp;·&nbsp; Telecom / Enterprise</div>
+      </div>
+      <ul class="exp-list">
+        <li>Developed <span class="highlight">compliance-assurance dashboards</span> for the Business Travel Application across MECA and Asian regions, supporting audit and network security teams with SQL-driven reporting.</li>
+        <li>Implemented <span class="highlight">RPA for automated delivery management</span> and automated the internal resignation process using DataLink and eFlows.</li>
+        <li>Performed spot checks on tool utilisation, identifying process gaps and recommending new <span class="highlight">automation opportunities</span> to improve efficiency.</li>
+        <li>Coordinated with GSC Egypt and GSC Romania on whitelisted and blacklisted software scanning, delivering monthly and fortnightly status reports.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-header">
+    <div class="section-tag">Featured Work</div>
+    <h2>Key Projects</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🛡️</div>
+        <div class="project-stack">
+          <span>RPA</span><span>ITOP</span><span>Workflow</span>
+        </div>
+      </div>
+      <div class="project-name">In-App BVS Bypass Automation</div>
+      <div class="project-client">Telenor Microfinance Bank · SOC</div>
+      <div class="project-desc">Automated the manual biometric verification bypass request process, integrating ITOP request handling to remove operational bottlenecks and accelerate complaint resolution for customers.</div>
+      <div class="project-impact">⚡ Faster, fully automated complaint handling</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🔐</div>
+        <div class="project-stack">
+          <span>Oracle FlexCube</span><span>RPA</span><span>Ticketing</span>
+        </div>
+      </div>
+      <div class="project-name">CIM Process Automation</div>
+      <div class="project-client">HBL Microfinance Bank · CIM</div>
+      <div class="project-desc">Digitised end-to-end Centralized Identity Management — role assignment, new user creation and password resets — with Maker/Checker workflows and ticketing-system integration for audit-ready access provisioning.</div>
+      <div class="project-impact">✅ Audit-compliant identity lifecycle</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">📊</div>
+        <div class="project-stack">
+          <span>RPA</span><span>Excel</span><span>OBI</span>
+        </div>
+      </div>
+      <div class="project-name">Assets &amp; Liabilities Scheduling</div>
+      <div class="project-client">HBL Microfinance Bank</div>
+      <div class="project-desc">Automated reconciliation of debit and credit transactions across 30–40 GL codes — extracting OBI reports, transforming data and generating GL-specific Excel files with accurate column mapping and calculated fields.</div>
+      <div class="project-impact">📈 30–40 GL codes reconciled automatically</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🏞️</div>
+        <div class="project-stack">
+          <span>Web Automation</span><span>DB Sync</span><span>RPA</span>
+        </div>
+      </div>
+      <div class="project-name">Land Portal &amp; WLT Automation</div>
+      <div class="project-client">AWJ</div>
+      <div class="project-desc">Automated objection and extension request workflows end-to-end — data extraction, request creation, daily status monitoring, database synchronisation and archival across Land Portal, WLT Portal, BOT and AWJ internal systems.</div>
+      <div class="project-impact">🔄 Daily government status sync, fully automated</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">📄</div>
+        <div class="project-stack">
+          <span>OCR</span><span>PDF Extraction</span><span>Xero</span>
+        </div>
+      </div>
+      <div class="project-name">Bank Statement to Xero</div>
+      <div class="project-client">TT Andersons</div>
+      <div class="project-desc">Converted scanned PDF bank statements into structured transaction data using OCR, then validated, normalised and uploaded the records into Xero — replacing manual data entry with a scalable reconciliation workflow.</div>
+      <div class="project-impact">🧾 OCR-powered accounting automation</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">📞</div>
+        <div class="project-stack">
+          <span>Siebel CRM</span><span>Web Services</span><span>RPA</span>
+        </div>
+      </div>
+      <div class="project-name">Customer Retention Automation</div>
+      <div class="project-client">PTCL</div>
+      <div class="project-desc">Automated service-request generation and retention workflows — retrieving customer profiles from Siebel CRM, identifying open requests and applying package changes and retention offers based on defined criteria.</div>
+      <div class="project-impact">🎯 Retention offers triggered automatically</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🕵️</div>
+        <div class="project-stack">
+          <span>AML</span><span>Data Matching</span><span>RPA</span>
+        </div>
+      </div>
+      <div class="project-name">AML Alert Verification</div>
+      <div class="project-client">Easypaisa Digital Bank</div>
+      <div class="project-desc">Automated review and classification of AML batch-screening alerts as True or False hits, matching customers on CNIC, name, date of birth, city and country to reduce manual compliance effort.</div>
+      <div class="project-impact">✅ Consistent, audit-ready AML reviews</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">📈</div>
+        <div class="project-stack">
+          <span>Power BI</span><span>SQL</span><span>Audit</span>
+        </div>
+      </div>
+      <div class="project-name">BTA Compliance Dashboard</div>
+      <div class="project-client">Huawei · MECA &amp; Asia</div>
+      <div class="project-desc">Developed a compliance-assurance dashboard for Huawei's Business Travel Application across MECA and Asian regions, with SQL dashboards supporting the audit and network security teams and recurring reporting.</div>
+      <div class="project-impact">📋 Monthly &amp; fortnightly compliance reporting</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KEY ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header">
+    <div class="section-tag">Impact</div>
+    <h2>Key Achievements</h2>
+  </div>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="ach-icon">🏦</div>
+      <div class="ach-text">Delivered automation for <strong>three fintech clients</strong> — Telenor Microfinance Bank, HBL Microfinance Bank and Easypaisa — across SOC, CIM and AML operations.</div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon">🌍</div>
+      <div class="ach-text">Coordinated with <strong>GSC Egypt and GSC Romania</strong> on whitelisted and blacklisted software scanning, keeping policy checks consistent across regions.</div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon">🔑</div>
+      <div class="ach-text">Digitised <strong>Maker/Checker access workflows</strong> in Oracle FlexCube, improving turnaround and audit compliance for user provisioning.</div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon">⚙️</div>
+      <div class="ach-text">Automated Huawei's <strong>resignation process</strong> using DataLink and eFlows, replacing a manual HR workflow with a repeatable bot-driven one.</div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon">🚚</div>
+      <div class="ach-text">Implemented <strong>RPA for automated delivery management</strong>, giving operations a reliable, monitored process in place of manual tracking.</div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon">🎓</div>
+      <div class="ach-text">Earned <strong>HackerRank SQL (Advanced)</strong> certification and an <strong>Automation Level III</strong> certification in Python work data management.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section id="education" style="background: var(--navy-mid);">
+  <div class="section-header">
+    <div class="section-tag">Background</div>
+    <h2>Education &amp; Certifications</h2>
+  </div>
+  <div class="edu-cert-grid">
+    <div class="edu-block">
+      <h3>🎓 Education</h3>
+      <div class="edu-item">
+        <div class="edu-degree">Bachelor of Science in Computer Sciences</div>
+        <div class="edu-school">National University of Modern Languages, Islamabad</div>
+        <div class="edu-year">2019 – 2023</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">Intermediate in Computer Science (ICS)</div>
+        <div class="edu-school">F.G. Degree College, Rawalpindi</div>
+        <div class="edu-year">2017 – 2019</div>
+      </div>
+    </div>
+    <div class="edu-block">
+      <h3>📜 Certifications</h3>
+      <ul class="cert-list">
+        <li>
+          <span>SQL (Advanced)<span class="cert-issuer">HackerRank</span></span>
+        </li>
+        <li>
+          <span>Automation Certification Level III — Work Data Management<span class="cert-issuer">Python Automation</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-header">
+    <div class="section-tag">Let's Connect</div>
+    <h2>Get In Touch</h2>
+    <p style="color: var(--white-dim); margin-top: 1rem; font-size: 0.95rem; max-width: 480px; margin-left: auto; margin-right: auto;">
+      Open to automation engineering roles, remote opportunities and consulting engagements.
+    </p>
+  </div>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:themariamusazai@gmail.com">
+      <span class="ci">✉️</span> themariamusazai@gmail.com
+    </a>
+    <a class="contact-link" href="tel:+923125258091">
+      <span class="ci">📞</span> +92 312 525 8091
+    </a>
+    <a class="contact-link" href="https://www.linkedin.com/in/maria-musazai" target="_blank" rel="noopener noreferrer">
+      <span class="ci">💼</span> linkedin.com/in/maria-musazai
+    </a>
+    <a class="contact-link" href="assets/maria-bibi-cv.pdf" download="Maria-Bibi-CV.pdf">
+      <span class="ci">📄</span> Download CV
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Maria Bibi &nbsp;·&nbsp; Automation Engineer &nbsp;·&nbsp; Built with precision</p>
+</footer>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  links.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
